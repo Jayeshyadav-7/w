@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 p-4">
+      <p class="fs-1 text-left">Create a New Listing</p>
+      <form
+        method="POST"
+        action="/listings"
+        novalidate
+        class="needs-validation"
+      >
+        <!-- Title -->
+        <div class="form-group mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            name="listing[title]"
+            placeholder="enter title"
+            type="text"
+            class="form-control"
+            id="title"
+            required
+          />
+          <div class="invalid-feedback">title is required</div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            name="listing[description]"
+            placeholder="enter description"
+            class="form-control"
+            id="description"
+            rows="3"
+            required
+          ></textarea>
+          <div class="invalid-feedback">description is required</div>
+        </div>
+
+        <!-- Image Link -->
+        <div class="form-group mb-3">
+          <label for="image" class="form-label">Image link</label>
+          <input
+            name="listing[image]"
+            placeholder="enter image URL/Link"
+            type="text"
+            class="form-control"
+            id="image"
+            required
+          />
+          <div class="invalid-feedback">image link/URL is required</div>
+        </div>
+
+        <!-- Price and Country -->
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+              class="form-control"
+              name="listing[price]"
+              placeholder="enter price"
+              type="number"
+              id="price"
+              required
+            />
+            <div class="invalid-feedback">price is required</div>
+          </div>
+          <div class="col-12 col-sm-8">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              name="listing[country]"
+              placeholder="enter country"
+              id="country"
+              required
+            />
+            <div class="invalid-feedback">country name is required</div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input
+            name="listing[location]"
+            placeholder="enter location"
+            type="text"
+            class="form-control"
+            id="location"
+            required
+          />
+          <div class="invalid-feedback">city name is required</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-danger">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

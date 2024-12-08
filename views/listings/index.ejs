@@ -1,0 +1,36 @@
+<div class="container mb-4 mt-3">
+  <p class="fs-1 text-left">All Listings</p>
+  <form method="GET" action="/listings/new">
+    <button type="submit" class="btn btn-danger mb-4">
+      Create New Listing
+    </button>
+  </form>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <% for (let listing of allListings) { %>
+    <div class="col">
+      <div class="card shadow-sm h-100">
+        <a href="/listings/<%= listing.id %>" class="text-decoration-none">
+          <img
+            src="<%= listing.image.url %>"
+            class="card-img-top"
+            style="object-fit: cover; height: 200px"
+            alt="<%= listing.  title %>"
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+              <a
+                href="/listings/<%= listing._id %>"
+                class="text-decoration-none text-dark"
+                ><b><%= listing. title %></b></a
+              >
+            </h5>
+            <p class="card-text">
+              &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>

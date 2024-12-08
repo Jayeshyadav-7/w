@@ -1,0 +1,101 @@
+<div class="container d-flex justify-content-center min-vh-90 mb-4">
+  <div class="col-md-8">
+    <p class="fs-1 text-left mt-3">Listing Details:</p>
+    <ul class="list-unstyled">
+      <li>
+        <img
+          src="<%= listing.image.url %>"
+          alt="Listing Image"
+          class="img-fluid mb-3 rounded"
+          style="width: 100%; max-height: 300px; object-fit: cover"
+        />
+      </li>
+      <li class="fs-4 font-weight-bold"><%= listing.title %></li>
+      <li class="mb-2"><%= listing.description %></li>
+      <li class="fs-5 text-danger">
+        &#8377; <%= listing.price.toLocaleString("en-IN") %>
+      </li>
+      <li class="mb-2"><%= listing.location %></li>
+      <li class="mb-4"><%= listing.country %></li>
+    </ul>
+    <div class="d-flex gap-3 mb-5">
+      <a
+        href="/listings/<%= listing._id %>/edit"
+        class="btn btn-danger me-2 px-4"
+      >
+        Edit
+      </a>
+      <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+        <button type="submit" class="btn btn-dark px-4">Delete</button>
+      </form>
+    </div>
+
+    <!-- Review Form -->
+    <div class="mt-4">
+      <p class="fs-3">Add a Review:</p>
+      <form
+        method="POST"
+        action="/listings/<%= listing._id %>/reviews"
+        novalidate
+        class="needs-validation"
+      >
+        <div class="mb-3">
+          <textarea
+            name="review[comment]"
+            class="form-control"
+            rows="4"
+            placeholder="Write your review here..."
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating (1 to 5):</label>
+          <input
+            type="range"
+            name="review[rating]"
+            id="rating"
+            class="form-range"
+            min="1"
+            max="5"
+            value="1"
+          />
+          <span id="ratingValue" class="d-block text-center mt-2">1</span>
+        </div>
+        <button type="submit" class="btn btn-danger">Submit Review</button>
+      </form>
+    </div>
+
+    <!-- Review section -->
+    <div class="mt-5">
+      <h3>Reviews</h3>
+      <% if (listing.reviews.length > 0) { %>
+      <div class="row">
+        <% listing.reviews.forEach((review) => { %>
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Rating: <%= review.rating %>/5</h5>
+              <p class="card-text"><%= review.comment %></p>
+              <p class="card-text">
+                <small class="text-muted"
+                  >Posted on <%= new Date(review.createdAt).toLocaleDateString()
+                  %></small
+                >
+              </p>
+              <!-- <form
+                action="/listings/<%= listing.id %>/reviews/<%= review._id %>?_method=DELETE"
+                method="POST"
+              >
+                <button type="submit" class="btn btn-dark">Delete</button>
+              </form> -->
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="text-muted">No reviews yet. Be the first to leave one!</p>
+      <% } %>
+    </div>
+  </div>
+</div>
